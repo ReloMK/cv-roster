@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Roasted — Get Brutally Honest CV Feedback</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Syne+Mono&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d0d0d;
+  --surface: #141414;
+  --surface2: #1a1a1a;
+  --border: #2a2a2a;
+  --fire: #ff4d00;
+  --fire2: #ff8c00;
+  --gold: #f5c518;
+  --green: #00d68f;
+  --text: #f0ede6;
+  --muted: #666;
+  --muted2: #444;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Epilogue', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Animated fire gradient background */
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at 20% 50%, rgba(255,77,0,0.04) 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 20%, rgba(255,140,0,0.03) 0%, transparent 40%),
+              radial-gradient(ellipse at 60% 80%, rgba(255,77,0,0.02) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 0;
+  animation: bgShift 12s ease-in-out infinite alternate;
+}
+
+@keyframes bgShift {
+  from { transform: translate(0,0) rotate(0deg); }
+  to { transform: translate(2%, 2%) rotate(1deg); }
+}
+
+.wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero */
+.hero {
+  padding: 64px 0 48px;
+  text-align: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,77,0,0.12);
+  border: 1px solid rgba(255,77,0,0.3);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--fire2);
+  margin-bottom: 28px;
+  animation: fadeDown 0.6s ease-out both;
+}
+
+.flame { font-size: 14px; }
+
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(42px, 8vw, 72px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+  animation: fadeDown 0.6s 0.1s ease-out both;
+}
+
+.hero h1 .fire-text {
+  background: linear-gradient(135deg, var(--fire), var(--fire2), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  font-size: 17px;
+  color: #999;
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0 auto 32px;
+  font-weight: 300;
+  animation: fadeDown 0.6s 0.2s ease-out both;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 48px;
+  animation: fadeDown 0.6s 0.3s ease-out both;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--fire2);
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  font-family: 'Syne Mono', monospace;
+  text-transform: uppercase;
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Upload zone */
+.upload-section {
+  animation: fadeUp 0.6s 0.4s ease-out both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px 10px 0 0;
+  padding: 6px;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px;
+  background: none;
+  border: none;
+  border-radius: 7px;
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+}
+
+.tab.active {
+  background: var(--surface2);
+  color: var(--text);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.input-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 28px;
+}
+
+/* PDF drop zone */
+.drop-zone {
+  border: 2px dashed var(--border);
+  border-radius: 10px;
+  padding: 48px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  display: none;
+}
+
+.drop-zone.active-tab { display: block; }
+
+.drop-zone:hover, .drop-zone.dragover {
+  border-color: var(--fire);
+  background: rgba(255,77,0,0.04);
+}
+
+.drop-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.drop-zone h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.drop-zone p {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.drop-zone input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.file-selected {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,214,143,0.1);
+  border: 1px solid rgba(0,214,143,0.3);
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 13px;
+  color: var(--green);
+  font-family: 'Syne Mono', monospace;
+}
+
+/* Text area tab */
+.text-input-wrap { display: none; }
+.text-input-wrap.active-tab { display: block; }
+
+textarea.cv-text {
+  width: 100%;
+  min-height: 220px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  color: var(--text);
+  font-family: 'Syne Mono', monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+textarea.cv-text:focus {
+  border-color: var(--fire);
+}
+
+textarea.cv-text::placeholder { color: var(--muted2); }
+
+.job-field {
+  margin-top: 16px;
+}
+
+.field-label {
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+  display: block;
+}
+
+input.job-input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--text);
+  font-family: 'Epilogue', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input.job-input:focus { border-color: var(--fire); }
+input.job-input::placeholder { color: var(--muted2); }
+
+/* CTA button */
+.roast-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 18px 24px;
+  background: linear-gradient(135deg, var(--fire), var(--fire2));
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-family: 'Syne', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.roast-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--fire2), var(--gold));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.roast-btn:hover::before { opacity: 1; }
+.roast-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(255,77,0,0.4); }
+.roast-btn:active { transform: translateY(0); }
+.roast-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+.roast-btn span { position: relative; z-index: 1; }
+
+/* Loading */
+.loading {
+  display: none;
+  text-align: center;
+  padding: 64px 24px;
+}
+
+.loading.visible { display: block; }
+
+.fire-loader {
+  font-size: 48px;
+  animation: fireShake 0.5s ease-in-out infinite alternate;
+  display: block;
+  margin-bottom: 20px;
+}
+
+@keyframes fireShake {
+  from { transform: scale(1) rotate(-3deg); }
+  to { transform: scale(1.1) rotate(3deg); }
+}
+
+.loading-msg {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.loading-sub {
+  font-size: 13px;
+  color: var(--muted);
+  font-family: 'Syne Mono', monospace;
+}
+
+.loading-bar {
+  width: 200px;
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  margin: 20px auto 0;
+  overflow: hidden;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--fire), var(--fire2));
+  border-radius: 2px;
+  animation: loadBar 2.5s ease-in-out infinite;
+}
+
+@keyframes loadBar {
+  0% { width: 0%; margin-left: 0; }
+  50% { width: 70%; }
+  100% { width: 0%; margin-left: 100%; }
+}
+
+/* Results */
+.results {
+  display: none;
+  animation: fadeUp 0.5s ease-out forwards;
+}
+
+.results.visible { display: block; }
+
+/* Score card */
+.score-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.score-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--fire), var(--fire2), var(--gold));
+}
+
+.score-label {
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.score-number {
+  font-family: 'Syne', sans-serif;
+  font-size: 80px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.score-number.bad { color: var(--fire); }
+.score-number.ok { color: var(--fire2); }
+.score-number.good { color: var(--gold); }
+.score-number.great { color: var(--green); }
+
+.score-verdict {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.score-tagline {
+  font-size: 14px;
+  color: #888;
+  font-style: italic;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Roast sections */
+.roast-grid {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.roast-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  animation: fadeUp 0.4s ease-out both;
+}
+
+.roast-block-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.roast-icon { font-size: 20px; }
+
+.roast-block-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.roast-block-title.red { color: var(--fire); }
+.roast-block-title.orange { color: var(--fire2); }
+.roast-block-title.gold { color: var(--gold); }
+.roast-block-title.green { color: var(--green); }
+
+.roast-items { list-style: none; }
+
+.roast-items li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  line-height: 1.6;
+  color: #ccc;
+  display: flex;
+  gap: 10px;
+}
+
+.roast-items li:last-child { border-bottom: none; padding-bottom: 0; }
+
+.roast-items li::before {
+  content: '→';
+  color: var(--fire);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Paywall */
+.paywall {
+  background: var(--surface);
+  border: 1px solid rgba(255,140,0,0.3);
+  border-radius: 16px;
+  padding: 40px 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.paywall::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255,140,0,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.lock-icon {
+  font-size: 36px;
+  display: block;
+  margin-bottom: 16px;
+  animation: lockBounce 2s ease-in-out infinite;
+}
+
+@keyframes lockBounce {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-4px) rotate(-5deg); }
+  75% { transform: translateY(-4px) rotate(5deg); }
+}
+
+.paywall h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
+}
+
+.paywall h2 em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--fire2), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.paywall p {
+  color: #888;
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 420px;
+  margin: 0 auto 28px;
+}
+
+.paywall-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+.pw-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+
+.pw-feature-icon { font-size: 18px; flex-shrink: 0; }
+
+.pw-feature-text {
+  font-size: 12px;
+  color: #aaa;
+  line-height: 1.4;
+}
+
+.pw-feature-text strong {
+  display: block;
+  color: var(--text);
+  font-size: 13px;
+  margin-bottom: 2px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.price-main {
+  font-family: 'Syne', sans-serif;
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--gold);
+}
+
+.price-note {
+  font-size: 13px;
+  color: var(--muted);
+  text-align: left;
+  line-height: 1.3;
+}
+
+.pay-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 48px;
+  background: linear-gradient(135deg, var(--fire2), var(--gold));
+  border: none;
+  border-radius: 10px;
+  color: #0d0d0d;
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+
+.pay-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(245,197,24,0.4);
+}
+
+.secure-note {
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--muted);
+  font-family: 'Syne Mono', monospace;
+  letter-spacing: 0.06em;
+}
+
+/* Blur overlay for teaser */
+.blurred-preview {
+  filter: blur(6px);
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.4;
+  margin-bottom: -20px;
+  max-height: 120px;
+  overflow: hidden;
+}
+
+/* Reset btn */
+.reset-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.reset-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 28px;
+  color: var(--muted);
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reset-btn:hover {
+  border-color: var(--text);
+  color: var(--text);
+}
+
+/* Error */
+.err-box {
+  display: none;
+  background: rgba(255,77,0,0.08);
+  border: 1px solid rgba(255,77,0,0.2);
+  border-radius: 8px;
+  padding: 14px 18px;
+  color: var(--fire2);
+  font-size: 13px;
+  font-family: 'Syne Mono', monospace;
+  margin-top: 12px;
+}
+
+.err-box.visible { display: block; }
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 40px 0 20px;
+  font-size: 12px;
+  color: var(--muted2);
+  font-family: 'Syne Mono', monospace;
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 560px) {
+  .paywall-features { grid-template-columns: 1fr; }
+  .stats-row { gap: 20px; }
+  .paywall { padding: 28px 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="badge"><span class="flame">🔥</span> FREE BRUTAL FEEDBACK</div>
+    <h1>Your CV Is<br><span class="fire-text">Getting Roasted</span></h1>
+    <p>Stop wondering why recruiters ghost you. Get the brutal, honest feedback your CV desperately needs — for free.</p>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num">87%</div>
+        <div class="stat-label">CVs fail on first read</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">6 sec</div>
+        <div class="stat-label">Avg recruiter attention</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">R50k+</div>
+        <div class="stat-label">Lost salary per year</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input -->
+  <div class="upload-section" id="uploadSection">
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('pdf')">📄 Upload PDF</button>
+      <button class="tab" onclick="switchTab('text')">📝 Paste Text</button>
+    </div>
+    <div class="input-card">
+
+      <!-- PDF tab -->
+      <div class="drop-zone active-tab" id="pdfTab"
+        ondragover="event.preventDefault(); this.classList.add('dragover')"
+        ondragleave="this.classList.remove('dragover')"
+        ondrop="handleDrop(event)">
+        <span class="drop-icon">📄</span>
+        <h3>Drop your CV here</h3>
+        <p>PDF format · Max 5MB</p>
+        <div id="fileSelectedMsg" style="display:none">
+          <span class="file-selected">✓ <span id="fileName"></span></span>
+        </div>
+        <input type="file" accept=".pdf" id="pdfInput" onchange="handleFileSelect(event)">
+      </div>
+
+      <!-- Text tab -->
+      <div class="text-input-wrap" id="textTab">
+        <label class="field-label">Paste your CV content</label>
+        <textarea class="cv-text" id="cvText" placeholder="Paste your full CV text here — work experience, education, skills, everything..."></textarea>
+      </div>
+
+      <div class="job-field">
+        <label class="field-label">Target job title or role (optional)</label>
+        <input class="job-input" type="text" id="jobTarget" placeholder="e.g. Senior Software Engineer, Marketing Manager, Financial Analyst…">
+      </div>
+
+      <button class="roast-btn" id="roastBtn" onclick="startRoast()">
+        <span>🔥 Roast My CV — It's Free</span>
+      </button>
+
+      <div class="err-box" id="errBox"></div>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading" id="loadingState">
+    <span class="fire-loader">🔥</span>
+    <div class="loading-msg" id="loadingMsg">Reading your CV...</div>
+    <div class="loading-sub" id="loadingSub">Preparing brutal feedback</div>
+    <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+  </div>
+
+  <!-- Results -->
+  <div class="results" id="resultsSection">
+
+    <!-- Score -->
+    <div class="score-card" id="scoreCard">
+      <div class="score-label">CV Score</div>
+      <div class="score-number" id="scoreNum">--</div>
+      <div class="score-verdict" id="scoreVerdict"></div>
+      <div class="score-tagline" id="scoreTagline"></div>
+    </div>
+
+    <!-- Roast content -->
+    <div class="roast-grid" id="roastGrid"></div>
+
+    <!-- Blurred teaser of rewrite -->
+    <div class="blurred-preview" id="blurredPreview">
+      <div class="roast-block">
+        <div class="roast-block-header">
+          <span class="roast-icon">✍️</span>
+          <span class="roast-block-title green">YOUR REWRITTEN CV</span>
+        </div>
+        <p style="color:#666; font-size:13px; line-height:1.7">John Doe | johndoe@email.com | +27 82 000 0000 | LinkedIn<br><br>
+        <strong style="color:#888">PROFESSIONAL SUMMARY</strong><br>
+        Results-driven professional with 5+ years driving measurable impact across...</p>
+      </div>
+    </div>
+
+    <!-- Paywall -->
+    <div class="paywall" id="paywallSection">
+      <span class="lock-icon">🔐</span>
+      <h2>Unlock Your <em>Full Transformation</em></h2>
+      <p>The roast was free. The fix is priceless. Get a completely rewritten CV + tailored cover letter that actually gets you hired.</p>
+
+      <div class="paywall-features">
+        <div class="pw-feature">
+          <span class="pw-feature-icon">✍️</span>
+          <div class="pw-feature-text">
+            <strong>Full CV Rewrite</strong>
+            Every section rewritten by AI to pass ATS and impress humans
+          </div>
+        </div>
+        <div class="pw-feature">
+          <span class="pw-feature-icon">📨</span>
+          <div class="pw-feature-text">
+            <strong>Cover Letter</strong>
+            Tailored cover letter for your target role, ready to send
+          </div>
+        </div>
+        <div class="pw-feature">
+          <span class="pw-feature-icon">🎯</span>
+          <div class="pw-feature-text">
+            <strong>ATS Keywords</strong>
+            Optimised keywords so algorithms don't bin you first
+          </div>
+        </div>
+        <div class="pw-feature">
+          <span class="pw-feature-icon">💡</span>
+          <div class="pw-feature-text">
+            <strong>LinkedIn Headline</strong>
+            A magnetic headline that makes recruiters stop scrolling
+          </div>
+        </div>
+      </div>
+
+      <div class="price-row">
+        <div class="price-main">R49</div>
+        <div class="price-note">Once off<br><span style="color: var(--muted); font-size:11px">~$2.70 USD · No subscription</span></div>
+      </div>
+
+      <a class="pay-btn" href="#" onclick="handlePayment(event)">
+        ⚡ Fix My CV Now
+      </a>
+      <div class="secure-note">🔒 Secure payment · Instant delivery · No subscription</div>
+    </div>
+
+    <div class="reset-row">
+      <button class="reset-btn" onclick="resetApp()">← Roast Another CV</button>
+    </div>
+  </div>
+
+</div>
+
+<footer>CV Roasted © 2025 · Brutal feedback that actually helps</footer>
+
+<!-- Payment Modal -->
+<div id="payModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:100; display:none; align-items:center; justify-content:center; padding:20px;">
+  <div style="background:#1a1a1a; border:1px solid #333; border-radius:16px; padding:40px 32px; max-width:420px; width:100%; text-align:center; position:relative;">
+    <button onclick="closeModal()" style="position:absolute;top:16px;right:16px;background:none;border:none;color:#666;font-size:20px;cursor:pointer;">✕</button>
+    <div style="font-size:40px;margin-bottom:16px;">⚡</div>
+    <h2 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:8px;">Complete Your Order</h2>
+    <p style="color:#888;font-size:14px;margin-bottom:28px;">You're one step away from a CV that gets you hired.</p>
+    <div style="background:#141414;border:1px solid #2a2a2a;border-radius:10px;padding:20px;margin-bottom:24px;text-align:left;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <span style="font-size:14px;color:#aaa;">CV Rewrite + Cover Letter</span>
+        <span style="font-family:'Syne',sans-serif;font-weight:700;color:#f5c518;">R49</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:14px;color:#aaa;">LinkedIn Headline + ATS Keywords</span>
+        <span style="font-family:'Syne',sans-serif;font-weight:700;color:#f5c518;">FREE</span>
+      </div>
+    </div>
+    <p style="font-size:13px;color:#555;font-family:'Syne Mono',monospace;margin-bottom:20px;">
+      → Connect your Stripe or PayFast account<br>to activate real payments
+    </p>
+    <button onclick="simulatePurchase()" style="width:100%;padding:16px;background:linear-gradient(135deg,#ff8c00,#f5c518);border:none;border-radius:10px;color:#0d0d0d;font-family:'Syne',sans-serif;font-size:16px;font-weight:800;cursor:pointer;">
+      Pay R49 — Fix My CV
+    </button>
+    <div style="margin-top:12px;font-size:11px;color:#444;font-family:'Syne Mono',monospace;">🔒 Secure · Instant · Once-off</div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+let activeTab = 'pdf';
+let pdfText = '';
+let currentCVText = '';
+
+const loadingMessages = [
+  { msg: "Reading your CV...", sub: "Every painful word of it" },
+  { msg: "Finding the red flags...", sub: "There may be a few" },
+  { msg: "Consulting recruiters...", sub: "They're not impressed yet" },
+  { msg: "Calculating your score...", sub: "Bracing for impact" },
+  { msg: "Writing the verdict...", sub: "Almost done" },
+];
+
+function switchTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll('.tab').forEach((t, i) => {
+    t.classList.toggle('active', (i === 0 && tab === 'pdf') || (i === 1 && tab === 'text'));
+  });
+  document.getElementById('pdfTab').classList.toggle('active-tab', tab === 'pdf');
+  document.getElementById('textTab').classList.toggle('active-tab', tab === 'text');
+}
+
+function handleFileSelect(e) {
+  const file = e.target.files[0];
+  if (file) showFileSelected(file);
+}
+
+function handleDrop(e) {
+  e.preventDefault();
+  document.getElementById('pdfTab').classList.remove('dragover');
+  const file = e.dataTransfer.files[0];
+  if (file && file.type === 'application/pdf') showFileSelected(file);
+}
+
+function showFileSelected(file) {
+  document.getElementById('fileSelectedMsg').style.display = 'block';
+  document.getElementById('fileName').textContent = file.name;
+}
+
+async function extractPDFText(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      try {
+        const pdf = await pdfjsLib.getDocument({ data: e.target.result }).promise;
+        let text = '';
+        for (let i = 1; i <= pdf.numPages; i++) {
+          const page = await pdf.getPage(i);
+          const content = await page.getTextContent();
+          text += content.items.map(s => s.str).join(' ') + '\n';
+        }
+        resolve(text);
+      } catch (err) { reject(err); }
+    };
+    reader.readAsArrayBuffer(file);
+  });
+}
+
+let loadingInterval;
+
+async function startRoast() {
+  const jobTarget = document.getElementById('jobTarget').value.trim();
+  let cvContent = '';
+
+  if (activeTab === 'pdf') {
+    const file = document.getElementById('pdfInput').files[0];
+    if (!file) {
+      showErr('Please upload a PDF file first.');
+      return;
+    }
+    try {
+      cvContent = await extractPDFText(file);
+    } catch {
+      showErr('Could not read that PDF. Try pasting your CV text instead.');
+      return;
+    }
+  } else {
+    cvContent = document.getElementById('cvText').value.trim();
+    if (!cvContent) {
+      showErr('Please paste your CV content first.');
+      return;
+    }
+  }
+
+  if (cvContent.length < 100) {
+    showErr('Your CV seems too short. Make sure to paste the full content.');
+    return;
+  }
+
+  currentCVText = cvContent;
+  document.getElementById('errBox').classList.remove('visible');
+  document.getElementById('roastBtn').disabled = true;
+  document.getElementById('uploadSection').style.display = 'none';
+  document.getElementById('loadingState').classList.add('visible');
+  document.getElementById('resultsSection').classList.remove('visible');
+
+  let msgIdx = 0;
+  loadingInterval = setInterval(() => {
+    msgIdx = (msgIdx + 1) % loadingMessages.length;
+    document.getElementById('loadingMsg').textContent = loadingMessages[msgIdx].msg;
+    document.getElementById('loadingSub').textContent = loadingMessages[msgIdx].sub;
+  }, 2200);
+
+  const prompt = `You are a brutally honest senior recruiter and career coach with 15+ years of experience hiring across South Africa and globally. You have zero patience for generic CVs.
+
+Analyse the following CV and provide a structured roast in JSON format.
+
+${jobTarget ? `Target role: ${jobTarget}` : ''}
+
+CV Content:
+${cvContent.substring(0, 3500)}
+
+Respond ONLY with valid JSON, no markdown fences, in this exact structure:
+{
+  "score": <number 0-100>,
+  "verdict": "<5-8 word brutal verdict like a headline>",
+  "tagline": "<one savage but motivating sentence>",
+  "critical_issues": [<3-4 strings: the most damaging problems, be specific and harsh>],
+  "missed_opportunities": [<3 strings: things they should have included or done better>],
+  "what_works": [<2-3 strings: genuine positives, be brief>],
+  "quick_wins": [<3-4 strings: specific fixes they can do TODAY to improve their CV>]
+}
+
+Be brutally specific — no generic advice. Reference actual content from their CV. Be harsh but constructive.`;
+
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1000,
+        messages: [{ role: "user", content: prompt }]
+      })
+    });
+
+    const data = await res.json();
+    const text = data.content.map(i => i.text || '').join('').replace(/```json|```/g, '').trim();
+    const result = JSON.parse(text);
+
+    clearInterval(loadingInterval);
+    document.getElementById('loadingState').classList.remove('visible');
+    renderResults(result);
+
+  } catch (err) {
+    clearInterval(loadingInterval);
+    document.getElementById('loadingState').classList.remove('visible');
+    document.getElementById('uploadSection').style.display = 'block';
+    document.getElementById('roastBtn').disabled = false;
+    showErr('Something went wrong. Please try again.');
+  }
+}
+
+function renderResults(r) {
+  // Score
+  const scoreEl = document.getElementById('scoreNum');
+  scoreEl.textContent = r.score;
+  scoreEl.className = 'score-number ' + (r.score < 35 ? 'bad' : r.score < 55 ? 'ok' : r.score < 75 ? 'good' : 'great');
+  document.getElementById('scoreVerdict').textContent = r.verdict;
+  document.getElementById('scoreTagline').textContent = r.tagline;
+
+  // Roast blocks
+  const grid = document.getElementById('roastGrid');
+  grid.innerHTML = '';
+
+  const blocks = [
+    { key: 'critical_issues', icon: '💀', title: 'KILLING YOUR CHANCES', cls: 'red', delay: 0 },
+    { key: 'missed_opportunities', icon: '🎯', title: 'MISSED OPPORTUNITIES', cls: 'orange', delay: 0.1 },
+    { key: 'quick_wins', icon: '⚡', title: 'FIX THESE TODAY', cls: 'gold', delay: 0.2 },
+    { key: 'what_works', icon: '✅', title: 'WHAT ACTUALLY WORKS', cls: 'green', delay: 0.3 },
+  ];
+
+  blocks.forEach(b => {
+    if (!r[b.key] || !r[b.key].length) return;
+    const el = document.createElement('div');
+    el.className = 'roast-block';
+    el.style.animationDelay = b.delay + 's';
+    el.innerHTML = `
+      <div class="roast-block-header">
+        <span class="roast-icon">${b.icon}</span>
+        <span class="roast-block-title ${b.cls}">${b.title}</span>
+      </div>
+      <ul class="roast-items">
+        ${r[b.key].map(item => `<li>${item}</li>`).join('')}
+      </ul>`;
+    grid.appendChild(el);
+  });
+
+  document.getElementById('resultsSection').classList.add('visible');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showErr(msg) {
+  const el = document.getElementById('errBox');
+  el.textContent = '→ ' + msg;
+  el.classList.add('visible');
+  document.getElementById('roastBtn').disabled = false;
+}
+
+function handlePayment(e) {
+  e.preventDefault();
+  document.getElementById('payModal').style.display = 'flex';
+}
+
+function closeModal() {
+  document.getElementById('payModal').style.display = 'none';
+}
+
+async function simulatePurchase() {
+  closeModal();
+  document.getElementById('paywallSection').innerHTML = `
+    <div style="text-align:center; padding:20px;">
+      <span style="font-size:40px; display:block; margin-bottom:16px;">⏳</span>
+      <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;margin-bottom:8px;">Generating your full rewrite...</div>
+      <div style="font-size:13px;color:#666;font-family:'Syne Mono',monospace;">This takes about 30 seconds</div>
+      <div class="loading-bar" style="margin:20px auto 0;"><div class="loading-bar-fill"></div></div>
+    </div>`;
+
+  const prompt = `You are an expert CV writer and career coach. Based on the CV below, produce a professional, ATS-optimised rewrite.
+
+CV Content:
+${currentCVText.substring(0, 3000)}
+
+Respond ONLY with valid JSON, no markdown:
+{
+  "rewritten_cv": "<full rewritten CV as clean text, well structured with sections>",
+  "cover_letter": "<tailored cover letter, 3 paragraphs, professional and compelling>",
+  "linkedin_headline": "<punchy LinkedIn headline under 220 characters>",
+  "ats_keywords": [<8-10 keyword strings relevant to the role>]
+}`;
+
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1000,
+        messages: [{ role: "user", content: prompt }]
+      })
+    });
+
+    const data = await res.json();
+    const text = data.content.map(i => i.text || '').join('').replace(/```json|```/g, '').trim();
+    const result = JSON.parse(text);
+
+    document.getElementById('paywallSection').innerHTML = `
+      <div style="position:relative;">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--fire),var(--fire2),var(--gold));border-radius:3px;"></div>
+      </div>
+      <div style="padding-top:16px;">
+        <div style="text-align:center;margin-bottom:24px;">
+          <span style="font-size:32px;display:block;margin-bottom:8px;">🎉</span>
+          <h2 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:6px;">Your Full Package is Ready</h2>
+          <p style="color:#888;font-size:13px;">Download, copy, and start applying today.</p>
+        </div>
+
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:16px;">
+          <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--green);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">✍️ Rewritten CV</div>
+          <pre style="font-family:'Syne Mono',monospace;font-size:11px;color:#bbb;white-space:pre-wrap;line-height:1.7;max-height:200px;overflow-y:auto;">${result.rewritten_cv}</pre>
+          <button onclick="copyText(this, \`${result.rewritten_cv.replace(/`/g,'\\`')}\`)" style="margin-top:12px;padding:8px 20px;background:none;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-family:'Syne Mono',monospace;font-size:10px;letter-spacing:0.1em;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--green)';this.style.color='var(--green)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">COPY CV</button>
+        </div>
+
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:16px;">
+          <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--fire2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">📨 Cover Letter</div>
+          <pre style="font-family:'Syne Mono',monospace;font-size:11px;color:#bbb;white-space:pre-wrap;line-height:1.7;max-height:160px;overflow-y:auto;">${result.cover_letter}</pre>
+          <button onclick="copyText(this, \`${result.cover_letter.replace(/`/g,'\\`')}\`)" style="margin-top:12px;padding:8px 20px;background:none;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-family:'Syne Mono',monospace;font-size:10px;letter-spacing:0.1em;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--fire2)';this.style.color='var(--fire2)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">COPY LETTER</button>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:16px;">
+            <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">💼 LinkedIn Headline</div>
+            <p style="font-size:13px;color:#ccc;line-height:1.5;">${result.linkedin_headline}</p>
+          </div>
+          <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:16px;">
+            <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--fire);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">🎯 ATS Keywords</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">${(result.ats_keywords || []).map(k => `<span style="background:rgba(255,77,0,0.1);border:1px solid rgba(255,77,0,0.2);border-radius:4px;padding:3px 8px;font-size:11px;color:var(--fire2);font-family:'Syne Mono',monospace;">${k}</span>`).join('')}</div>
+          </div>
+        </div>
+      </div>`;
+
+  } catch {
+    document.getElementById('paywallSection').innerHTML = `<div style="text-align:center;padding:24px;color:var(--fire);font-family:'Syne Mono',monospace;font-size:13px;">→ Something went wrong generating your rewrite. Please try again.</div>`;
+  }
+}
+
+function copyText(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✓ COPIED!';
+    setTimeout(() => { btn.textContent = orig; }, 2000);
+  });
+}
+
+function resetApp() {
+  document.getElementById('uploadSection').style.display = 'block';
+  document.getElementById('resultsSection').classList.remove('visible');
+  document.getElementById('roastBtn').disabled = false;
+  document.getElementById('pdfInput').value = '';
+  document.getElementById('cvText').value = '';
+  document.getElementById('jobTarget').value = '';
+  document.getElementById('fileSelectedMsg').style.display = 'none';
+  pdfText = '';
+  currentCVText = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
