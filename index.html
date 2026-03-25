@@ -30,14 +30,11 @@ body {
   overflow-x: hidden;
 }
 
-/* Animated fire gradient background */
 body::before {
   content: '';
   position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
   background: radial-gradient(ellipse at 20% 50%, rgba(255,77,0,0.04) 0%, transparent 50%),
               radial-gradient(ellipse at 80% 20%, rgba(255,140,0,0.03) 0%, transparent 40%),
               radial-gradient(ellipse at 60% 80%, rgba(255,77,0,0.02) 0%, transparent 40%);
@@ -48,7 +45,7 @@ body::before {
 
 @keyframes bgShift {
   from { transform: translate(0,0) rotate(0deg); }
-  to { transform: translate(2%, 2%) rotate(1deg); }
+  to { transform: translate(2%,2%) rotate(1deg); }
 }
 
 .wrap {
@@ -59,7 +56,6 @@ body::before {
   z-index: 1;
 }
 
-/* Hero */
 .hero {
   padding: 64px 0 48px;
   text-align: center;
@@ -80,8 +76,6 @@ body::before {
   margin-bottom: 28px;
   animation: fadeDown 0.6s ease-out both;
 }
-
-.flame { font-size: 14px; }
 
 .hero h1 {
   font-family: 'Syne', sans-serif;
@@ -118,9 +112,7 @@ body::before {
   animation: fadeDown 0.6s 0.3s ease-out both;
 }
 
-.stat {
-  text-align: center;
-}
+.stat { text-align: center; }
 
 .stat-num {
   font-family: 'Syne', sans-serif;
@@ -142,15 +134,12 @@ body::before {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Upload zone */
-.upload-section {
-  animation: fadeUp 0.6s 0.4s ease-out both;
-}
-
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+.upload-section { animation: fadeUp 0.6s 0.4s ease-out both; }
 
 .tabs {
   display: flex;
@@ -173,7 +162,6 @@ body::before {
   color: var(--muted);
   cursor: pointer;
   transition: all 0.2s;
-  letter-spacing: 0.02em;
 }
 
 .tab.active {
@@ -190,7 +178,6 @@ body::before {
   padding: 28px;
 }
 
-/* PDF drop zone */
 .drop-zone {
   border: 2px dashed var(--border);
   border-radius: 10px;
@@ -203,17 +190,12 @@ body::before {
 }
 
 .drop-zone.active-tab { display: block; }
-
 .drop-zone:hover, .drop-zone.dragover {
   border-color: var(--fire);
   background: rgba(255,77,0,0.04);
 }
 
-.drop-icon {
-  font-size: 40px;
-  margin-bottom: 12px;
-  display: block;
-}
+.drop-icon { font-size: 40px; margin-bottom: 12px; display: block; }
 
 .drop-zone h3 {
   font-family: 'Syne', sans-serif;
@@ -222,11 +204,7 @@ body::before {
   margin-bottom: 6px;
 }
 
-.drop-zone p {
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 16px;
-}
+.drop-zone p { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
 
 .drop-zone input[type="file"] {
   position: absolute;
@@ -250,7 +228,6 @@ body::before {
   font-family: 'Syne Mono', monospace;
 }
 
-/* Text area tab */
 .text-input-wrap { display: none; }
 .text-input-wrap.active-tab { display: block; }
 
@@ -270,15 +247,10 @@ textarea.cv-text {
   transition: border-color 0.2s;
 }
 
-textarea.cv-text:focus {
-  border-color: var(--fire);
-}
-
+textarea.cv-text:focus { border-color: var(--fire); }
 textarea.cv-text::placeholder { color: var(--muted2); }
 
-.job-field {
-  margin-top: 16px;
-}
+.job-field { margin-top: 16px; }
 
 .field-label {
   font-family: 'Syne Mono', monospace;
@@ -306,7 +278,6 @@ input.job-input {
 input.job-input:focus { border-color: var(--fire); }
 input.job-input::placeholder { color: var(--muted2); }
 
-/* CTA button */
 .roast-btn {
   width: 100%;
   margin-top: 20px;
@@ -344,13 +315,7 @@ input.job-input::placeholder { color: var(--muted2); }
 .roast-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 .roast-btn span { position: relative; z-index: 1; }
 
-/* Loading */
-.loading {
-  display: none;
-  text-align: center;
-  padding: 64px 24px;
-}
-
+.loading { display: none; text-align: center; padding: 64px 24px; }
 .loading.visible { display: block; }
 
 .fire-loader {
@@ -401,15 +366,9 @@ input.job-input::placeholder { color: var(--muted2); }
   100% { width: 0%; margin-left: 100%; }
 }
 
-/* Results */
-.results {
-  display: none;
-  animation: fadeUp 0.5s ease-out forwards;
-}
-
+.results { display: none; animation: fadeUp 0.5s ease-out forwards; }
 .results.visible { display: block; }
 
-/* Score card */
 .score-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -466,12 +425,7 @@ input.job-input::placeholder { color: var(--muted2); }
   margin: 0 auto;
 }
 
-/* Roast sections */
-.roast-grid {
-  display: grid;
-  gap: 16px;
-  margin-bottom: 20px;
-}
+.roast-grid { display: grid; gap: 16px; margin-bottom: 20px; }
 
 .roast-block {
   background: var(--surface);
@@ -516,13 +470,7 @@ input.job-input::placeholder { color: var(--muted2); }
 }
 
 .roast-items li:last-child { border-bottom: none; padding-bottom: 0; }
-
-.roast-items li::before {
-  content: '→';
-  color: var(--fire);
-  flex-shrink: 0;
-  margin-top: 1px;
-}
+.roast-items li::before { content: '→'; color: var(--fire); flex-shrink: 0; margin-top: 1px; }
 
 /* Paywall */
 .paywall {
@@ -601,11 +549,7 @@ input.job-input::placeholder { color: var(--muted2); }
 
 .pw-feature-icon { font-size: 18px; flex-shrink: 0; }
 
-.pw-feature-text {
-  font-size: 12px;
-  color: #aaa;
-  line-height: 1.4;
-}
+.pw-feature-text { font-size: 12px; color: #aaa; line-height: 1.4; }
 
 .pw-feature-text strong {
   display: block;
@@ -631,12 +575,7 @@ input.job-input::placeholder { color: var(--muted2); }
   color: var(--gold);
 }
 
-.price-note {
-  font-size: 13px;
-  color: var(--muted);
-  text-align: left;
-  line-height: 1.3;
-}
+.price-note { font-size: 13px; color: var(--muted); text-align: left; line-height: 1.3; }
 
 .pay-btn {
   display: inline-flex;
@@ -656,10 +595,7 @@ input.job-input::placeholder { color: var(--muted2); }
   text-decoration: none;
 }
 
-.pay-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(245,197,24,0.4);
-}
+.pay-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(245,197,24,0.4); }
 
 .secure-note {
   margin-top: 12px;
@@ -669,7 +605,6 @@ input.job-input::placeholder { color: var(--muted2); }
   letter-spacing: 0.06em;
 }
 
-/* Blur overlay for teaser */
 .blurred-preview {
   filter: blur(6px);
   pointer-events: none;
@@ -680,12 +615,7 @@ input.job-input::placeholder { color: var(--muted2); }
   overflow: hidden;
 }
 
-/* Reset btn */
-.reset-row {
-  display: flex;
-  justify-content: center;
-  margin-top: 32px;
-}
+.reset-row { display: flex; justify-content: center; margin-top: 32px; }
 
 .reset-btn {
   background: none;
@@ -701,12 +631,8 @@ input.job-input::placeholder { color: var(--muted2); }
   transition: all 0.2s;
 }
 
-.reset-btn:hover {
-  border-color: var(--text);
-  color: var(--text);
-}
+.reset-btn:hover { border-color: var(--text); color: var(--text); }
 
-/* Error */
 .err-box {
   display: none;
   background: rgba(255,77,0,0.08);
@@ -721,7 +647,22 @@ input.job-input::placeholder { color: var(--muted2); }
 
 .err-box.visible { display: block; }
 
-/* Footer */
+/* Success banner */
+.success-banner {
+  display: none;
+  background: rgba(0,214,143,0.1);
+  border: 1px solid rgba(0,214,143,0.3);
+  border-radius: 10px;
+  padding: 16px 20px;
+  color: var(--green);
+  font-family: 'Syne Mono', monospace;
+  font-size: 13px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.success-banner.visible { display: block; }
+
 footer {
   text-align: center;
   padding: 40px 0 20px;
@@ -741,9 +682,8 @@ footer {
 <body>
 <div class="wrap">
 
-  <!-- Hero -->
   <div class="hero">
-    <div class="badge"><span class="flame">🔥</span> FREE BRUTAL FEEDBACK</div>
+    <div class="badge"><span>🔥</span> FREE BRUTAL FEEDBACK</div>
     <h1>Your CV Is<br><span class="fire-text">Getting Roasted</span></h1>
     <p>Stop wondering why recruiters ghost you. Get the brutal, honest feedback your CV desperately needs — for free.</p>
     <div class="stats-row">
@@ -762,15 +702,17 @@ footer {
     </div>
   </div>
 
-  <!-- Input -->
+  <!-- Payment success banner (shown when returning from PayFast) -->
+  <div class="success-banner" id="successBanner">
+    ✅ Payment confirmed! Your full CV rewrite is being generated below...
+  </div>
+
   <div class="upload-section" id="uploadSection">
     <div class="tabs">
       <button class="tab active" onclick="switchTab('pdf')">📄 Upload PDF</button>
       <button class="tab" onclick="switchTab('text')">📝 Paste Text</button>
     </div>
     <div class="input-card">
-
-      <!-- PDF tab -->
       <div class="drop-zone active-tab" id="pdfTab"
         ondragover="event.preventDefault(); this.classList.add('dragover')"
         ondragleave="this.classList.remove('dragover')"
@@ -784,7 +726,6 @@ footer {
         <input type="file" accept=".pdf" id="pdfInput" onchange="handleFileSelect(event)">
       </div>
 
-      <!-- Text tab -->
       <div class="text-input-wrap" id="textTab">
         <label class="field-label">Paste your CV content</label>
         <textarea class="cv-text" id="cvText" placeholder="Paste your full CV text here — work experience, education, skills, everything..."></textarea>
@@ -798,12 +739,10 @@ footer {
       <button class="roast-btn" id="roastBtn" onclick="startRoast()">
         <span>🔥 Roast My CV — It's Free</span>
       </button>
-
       <div class="err-box" id="errBox"></div>
     </div>
   </div>
 
-  <!-- Loading -->
   <div class="loading" id="loadingState">
     <span class="fire-loader">🔥</span>
     <div class="loading-msg" id="loadingMsg">Reading your CV...</div>
@@ -811,10 +750,7 @@ footer {
     <div class="loading-bar"><div class="loading-bar-fill"></div></div>
   </div>
 
-  <!-- Results -->
   <div class="results" id="resultsSection">
-
-    <!-- Score -->
     <div class="score-card" id="scoreCard">
       <div class="score-label">CV Score</div>
       <div class="score-number" id="scoreNum">--</div>
@@ -822,23 +758,20 @@ footer {
       <div class="score-tagline" id="scoreTagline"></div>
     </div>
 
-    <!-- Roast content -->
     <div class="roast-grid" id="roastGrid"></div>
 
-    <!-- Blurred teaser of rewrite -->
     <div class="blurred-preview" id="blurredPreview">
       <div class="roast-block">
         <div class="roast-block-header">
           <span class="roast-icon">✍️</span>
           <span class="roast-block-title green">YOUR REWRITTEN CV</span>
         </div>
-        <p style="color:#666; font-size:13px; line-height:1.7">John Doe | johndoe@email.com | +27 82 000 0000 | LinkedIn<br><br>
+        <p style="color:#666;font-size:13px;line-height:1.7">John Doe | johndoe@email.com | +27 82 000 0000<br><br>
         <strong style="color:#888">PROFESSIONAL SUMMARY</strong><br>
-        Results-driven professional with 5+ years driving measurable impact across...</p>
+        Results-driven professional with 5+ years driving measurable impact...</p>
       </div>
     </div>
 
-    <!-- Paywall -->
     <div class="paywall" id="paywallSection">
       <span class="lock-icon">🔐</span>
       <h2>Unlock Your <em>Full Transformation</em></h2>
@@ -849,7 +782,7 @@ footer {
           <span class="pw-feature-icon">✍️</span>
           <div class="pw-feature-text">
             <strong>Full CV Rewrite</strong>
-            Every section rewritten by AI to pass ATS and impress humans
+            Every section rewritten to pass ATS and impress humans
           </div>
         </div>
         <div class="pw-feature">
@@ -867,7 +800,7 @@ footer {
           </div>
         </div>
         <div class="pw-feature">
-          <span class="pw-feature-icon">💡</span>
+          <span class="pw-feature-icon">💼</span>
           <div class="pw-feature-text">
             <strong>LinkedIn Headline</strong>
             A magnetic headline that makes recruiters stop scrolling
@@ -877,13 +810,13 @@ footer {
 
       <div class="price-row">
         <div class="price-main">R49</div>
-        <div class="price-note">Once off<br><span style="color: var(--muted); font-size:11px">~$2.70 USD · No subscription</span></div>
+        <div class="price-note">Once off<br><span style="color:var(--muted);font-size:11px">~$2.70 USD · No subscription</span></div>
       </div>
 
-      <a class="pay-btn" href="#" onclick="handlePayment(event)">
+      <button class="pay-btn" onclick="payWithPayFast()">
         ⚡ Fix My CV Now
-      </a>
-      <div class="secure-note">🔒 Secure payment · Instant delivery · No subscription</div>
+      </button>
+      <div class="secure-note">🔒 Capitec Pay · EFT · Card · Instant delivery</div>
     </div>
 
     <div class="reset-row">
@@ -895,39 +828,28 @@ footer {
 
 <footer>CV Roasted © 2025 · Brutal feedback that actually helps</footer>
 
-<!-- Payment Modal -->
-<div id="payModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:100; display:none; align-items:center; justify-content:center; padding:20px;">
-  <div style="background:#1a1a1a; border:1px solid #333; border-radius:16px; padding:40px 32px; max-width:420px; width:100%; text-align:center; position:relative;">
-    <button onclick="closeModal()" style="position:absolute;top:16px;right:16px;background:none;border:none;color:#666;font-size:20px;cursor:pointer;">✕</button>
-    <div style="font-size:40px;margin-bottom:16px;">⚡</div>
-    <h2 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:8px;">Complete Your Order</h2>
-    <p style="color:#888;font-size:14px;margin-bottom:28px;">You're one step away from a CV that gets you hired.</p>
-    <div style="background:#141414;border:1px solid #2a2a2a;border-radius:10px;padding:20px;margin-bottom:24px;text-align:left;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-        <span style="font-size:14px;color:#aaa;">CV Rewrite + Cover Letter</span>
-        <span style="font-family:'Syne',sans-serif;font-weight:700;color:#f5c518;">R49</span>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <span style="font-size:14px;color:#aaa;">LinkedIn Headline + ATS Keywords</span>
-        <span style="font-family:'Syne',sans-serif;font-weight:700;color:#f5c518;">FREE</span>
-      </div>
-    </div>
-    <p style="font-size:13px;color:#555;font-family:'Syne Mono',monospace;margin-bottom:20px;">
-      → Connect your Stripe or PayFast account<br>to activate real payments
-    </p>
-    <button onclick="simulatePurchase()" style="width:100%;padding:16px;background:linear-gradient(135deg,#ff8c00,#f5c518);border:none;border-radius:10px;color:#0d0d0d;font-family:'Syne',sans-serif;font-size:16px;font-weight:800;cursor:pointer;">
-      Pay R49 — Fix My CV
-    </button>
-    <div style="margin-top:12px;font-size:11px;color:#444;font-family:'Syne Mono',monospace;">🔒 Secure · Instant · Once-off</div>
-  </div>
-</div>
+<!-- Hidden PayFast form -->
+<form id="payfastForm" action="https://www.payfast.co.za/eng/process" method="POST" style="display:none;">
+  <input type="hidden" name="merchant_id" value="16423281">
+  <input type="hidden" name="merchant_key" value="9wtnvhdmxue1e">
+  <input type="hidden" name="return_url" value="https://relomk.github.io/cv-roaster/?payment=success">
+  <input type="hidden" name="cancel_url" value="https://relomk.github.io/cv-roaster/?payment=cancelled">
+  <input type="hidden" name="notify_url" value="https://relomk.github.io/cv-roaster/">
+  <input type="hidden" name="amount" value="49.00">
+  <input type="hidden" name="item_name" value="CV Roasted - Full CV Rewrite + Cover Letter">
+  <input type="hidden" name="item_description" value="Complete CV rewrite, tailored cover letter, ATS keywords and LinkedIn headline">
+  <input type="hidden" name="email_confirmation" value="1">
+</form>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
+// ---- CONFIG ----
+const GEMINI_API_KEY = 'AIzaSyBwHthqmqPbpwmCRsqrvNUy1rLPUxrz894';
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+
 let activeTab = 'pdf';
-let pdfText = '';
 let currentCVText = '';
 
 const loadingMessages = [
@@ -937,6 +859,34 @@ const loadingMessages = [
   { msg: "Calculating your score...", sub: "Bracing for impact" },
   { msg: "Writing the verdict...", sub: "Almost done" },
 ];
+
+// Check if returning from PayFast payment
+window.addEventListener('load', () => {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('payment') === 'success') {
+    const savedCV = sessionStorage.getItem('cvText');
+    const savedJob = sessionStorage.getItem('jobTarget');
+    if (savedCV) {
+      document.getElementById('successBanner').classList.add('visible');
+      document.getElementById('uploadSection').style.display = 'none';
+      currentCVText = savedCV;
+      generateRewrite(savedCV, savedJob || '');
+      document.getElementById('resultsSection').classList.add('visible');
+      // Try restore roast results
+      const savedRoast = sessionStorage.getItem('roastResult');
+      if (savedRoast) {
+        try { renderResults(JSON.parse(savedRoast)); } catch(e) {}
+      }
+    } else {
+      document.getElementById('successBanner').classList.add('visible');
+      document.getElementById('successBanner').textContent = '✅ Payment confirmed! Please paste your CV again below to generate your rewrite.';
+    }
+    // Clean URL
+    window.history.replaceState({}, document.title, window.location.pathname);
+  } else if (params.get('payment') === 'cancelled') {
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+});
 
 function switchTab(tab) {
   activeTab = tab;
@@ -956,7 +906,10 @@ function handleDrop(e) {
   e.preventDefault();
   document.getElementById('pdfTab').classList.remove('dragover');
   const file = e.dataTransfer.files[0];
-  if (file && file.type === 'application/pdf') showFileSelected(file);
+  if (file && file.type === 'application/pdf') {
+    document.getElementById('pdfInput').files = e.dataTransfer.files;
+    showFileSelected(file);
+  }
 }
 
 function showFileSelected(file) {
@@ -983,6 +936,20 @@ async function extractPDFText(file) {
   });
 }
 
+async function callGemini(prompt) {
+  const res = await fetch(GEMINI_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: prompt }] }],
+      generationConfig: { temperature: 0.7, maxOutputTokens: 2048 }
+    })
+  });
+  const data = await res.json();
+  if (!data.candidates || !data.candidates[0]) throw new Error('No response from AI');
+  return data.candidates[0].content.parts[0].text;
+}
+
 let loadingInterval;
 
 async function startRoast() {
@@ -991,10 +958,7 @@ async function startRoast() {
 
   if (activeTab === 'pdf') {
     const file = document.getElementById('pdfInput').files[0];
-    if (!file) {
-      showErr('Please upload a PDF file first.');
-      return;
-    }
+    if (!file) { showErr('Please upload a PDF file first.'); return; }
     try {
       cvContent = await extractPDFText(file);
     } catch {
@@ -1003,10 +967,7 @@ async function startRoast() {
     }
   } else {
     cvContent = document.getElementById('cvText').value.trim();
-    if (!cvContent) {
-      showErr('Please paste your CV content first.');
-      return;
-    }
+    if (!cvContent) { showErr('Please paste your CV content first.'); return; }
   }
 
   if (cvContent.length < 100) {
@@ -1015,6 +976,11 @@ async function startRoast() {
   }
 
   currentCVText = cvContent;
+
+  // Save to sessionStorage so we can use after PayFast redirect
+  sessionStorage.setItem('cvText', cvContent);
+  sessionStorage.setItem('jobTarget', jobTarget);
+
   document.getElementById('errBox').classList.remove('visible');
   document.getElementById('roastBtn').disabled = true;
   document.getElementById('uploadSection').style.display = 'none';
@@ -1028,42 +994,32 @@ async function startRoast() {
     document.getElementById('loadingSub').textContent = loadingMessages[msgIdx].sub;
   }, 2200);
 
-  const prompt = `You are a brutally honest senior recruiter and career coach with 15+ years of experience hiring across South Africa and globally. You have zero patience for generic CVs.
+  const prompt = `You are a brutally honest senior recruiter and career coach with 15+ years of experience hiring across South Africa and globally.
 
-Analyse the following CV and provide a structured roast in JSON format.
+Analyse the following CV and respond ONLY with valid JSON — no markdown, no explanation, no code fences.
 
 ${jobTarget ? `Target role: ${jobTarget}` : ''}
 
-CV Content:
-${cvContent.substring(0, 3500)}
+CV:
+${cvContent.substring(0, 4000)}
 
-Respond ONLY with valid JSON, no markdown fences, in this exact structure:
+JSON structure:
 {
   "score": <number 0-100>,
-  "verdict": "<5-8 word brutal verdict like a headline>",
+  "verdict": "<5-8 word brutal verdict>",
   "tagline": "<one savage but motivating sentence>",
-  "critical_issues": [<3-4 strings: the most damaging problems, be specific and harsh>],
-  "missed_opportunities": [<3 strings: things they should have included or done better>],
-  "what_works": [<2-3 strings: genuine positives, be brief>],
-  "quick_wins": [<3-4 strings: specific fixes they can do TODAY to improve their CV>]
-}
-
-Be brutally specific — no generic advice. Reference actual content from their CV. Be harsh but constructive.`;
+  "critical_issues": [<3-4 specific harsh problems>],
+  "missed_opportunities": [<3 things they should have done better>],
+  "what_works": [<2-3 genuine positives>],
+  "quick_wins": [<3-4 specific fixes they can do TODAY>]
+}`;
 
   try {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 1000,
-        messages: [{ role: "user", content: prompt }]
-      })
-    });
+    const text = await callGemini(prompt);
+    const clean = text.replace(/```json|```/g, '').trim();
+    const result = JSON.parse(clean);
 
-    const data = await res.json();
-    const text = data.content.map(i => i.text || '').join('').replace(/```json|```/g, '').trim();
-    const result = JSON.parse(text);
+    sessionStorage.setItem('roastResult', JSON.stringify(result));
 
     clearInterval(loadingInterval);
     document.getElementById('loadingState').classList.remove('visible');
@@ -1079,14 +1035,12 @@ Be brutally specific — no generic advice. Reference actual content from their 
 }
 
 function renderResults(r) {
-  // Score
   const scoreEl = document.getElementById('scoreNum');
   scoreEl.textContent = r.score;
   scoreEl.className = 'score-number ' + (r.score < 35 ? 'bad' : r.score < 55 ? 'ok' : r.score < 75 ? 'good' : 'great');
   document.getElementById('scoreVerdict').textContent = r.verdict;
   document.getElementById('scoreTagline').textContent = r.tagline;
 
-  // Roast blocks
   const grid = document.getElementById('roastGrid');
   grid.innerHTML = '';
 
@@ -1117,59 +1071,41 @@ function renderResults(r) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function showErr(msg) {
-  const el = document.getElementById('errBox');
-  el.textContent = '→ ' + msg;
-  el.classList.add('visible');
-  document.getElementById('roastBtn').disabled = false;
+function payWithPayFast() {
+  // Save CV text before redirecting to PayFast
+  sessionStorage.setItem('cvText', currentCVText);
+  sessionStorage.setItem('jobTarget', document.getElementById('jobTarget').value.trim());
+  document.getElementById('payfastForm').submit();
 }
 
-function handlePayment(e) {
-  e.preventDefault();
-  document.getElementById('payModal').style.display = 'flex';
-}
-
-function closeModal() {
-  document.getElementById('payModal').style.display = 'none';
-}
-
-async function simulatePurchase() {
-  closeModal();
+async function generateRewrite(cvText, jobTarget) {
   document.getElementById('paywallSection').innerHTML = `
-    <div style="text-align:center; padding:20px;">
-      <span style="font-size:40px; display:block; margin-bottom:16px;">⏳</span>
+    <div style="text-align:center;padding:20px;">
+      <span style="font-size:40px;display:block;margin-bottom:16px;">⏳</span>
       <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;margin-bottom:8px;">Generating your full rewrite...</div>
       <div style="font-size:13px;color:#666;font-family:'Syne Mono',monospace;">This takes about 30 seconds</div>
       <div class="loading-bar" style="margin:20px auto 0;"><div class="loading-bar-fill"></div></div>
     </div>`;
 
-  const prompt = `You are an expert CV writer and career coach. Based on the CV below, produce a professional, ATS-optimised rewrite.
+  const prompt = `You are an expert CV writer. Rewrite the following CV professionally and produce a full package.
 
-CV Content:
-${currentCVText.substring(0, 3000)}
+${jobTarget ? `Target role: ${jobTarget}` : ''}
+
+CV:
+${cvText.substring(0, 3500)}
 
 Respond ONLY with valid JSON, no markdown:
 {
-  "rewritten_cv": "<full rewritten CV as clean text, well structured with sections>",
-  "cover_letter": "<tailored cover letter, 3 paragraphs, professional and compelling>",
-  "linkedin_headline": "<punchy LinkedIn headline under 220 characters>",
-  "ats_keywords": [<8-10 keyword strings relevant to the role>]
+  "rewritten_cv": "<full rewritten CV as clean plain text with sections>",
+  "cover_letter": "<tailored 3-paragraph professional cover letter>",
+  "linkedin_headline": "<punchy LinkedIn headline under 200 characters>",
+  "ats_keywords": [<8-10 relevant keyword strings>]
 }`;
 
   try {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 1000,
-        messages: [{ role: "user", content: prompt }]
-      })
-    });
-
-    const data = await res.json();
-    const text = data.content.map(i => i.text || '').join('').replace(/```json|```/g, '').trim();
-    const result = JSON.parse(text);
+    const text = await callGemini(prompt);
+    const clean = text.replace(/```json|```/g, '').trim();
+    const result = JSON.parse(clean);
 
     document.getElementById('paywallSection').innerHTML = `
       <div style="position:relative;">
@@ -1178,37 +1114,49 @@ Respond ONLY with valid JSON, no markdown:
       <div style="padding-top:16px;">
         <div style="text-align:center;margin-bottom:24px;">
           <span style="font-size:32px;display:block;margin-bottom:8px;">🎉</span>
-          <h2 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:6px;">Your Full Package is Ready</h2>
-          <p style="color:#888;font-size:13px;">Download, copy, and start applying today.</p>
+          <h2 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:6px;">Your Full Package is Ready!</h2>
+          <p style="color:#888;font-size:13px;">Download, copy and start applying today.</p>
         </div>
 
         <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:16px;">
           <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--green);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">✍️ Rewritten CV</div>
-          <pre style="font-family:'Syne Mono',monospace;font-size:11px;color:#bbb;white-space:pre-wrap;line-height:1.7;max-height:200px;overflow-y:auto;">${result.rewritten_cv}</pre>
-          <button onclick="copyText(this, \`${result.rewritten_cv.replace(/`/g,'\\`')}\`)" style="margin-top:12px;padding:8px 20px;background:none;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-family:'Syne Mono',monospace;font-size:10px;letter-spacing:0.1em;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--green)';this.style.color='var(--green)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">COPY CV</button>
+          <pre style="font-family:'Syne Mono',monospace;font-size:11px;color:#bbb;white-space:pre-wrap;line-height:1.7;max-height:220px;overflow-y:auto;">${escapeHtml(result.rewritten_cv)}</pre>
+          <button onclick="copyText(this, ${JSON.stringify(result.rewritten_cv)})" style="margin-top:12px;padding:8px 20px;background:none;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-family:'Syne Mono',monospace;font-size:10px;letter-spacing:0.1em;cursor:pointer;">COPY CV</button>
         </div>
 
         <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:16px;">
           <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--fire2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">📨 Cover Letter</div>
-          <pre style="font-family:'Syne Mono',monospace;font-size:11px;color:#bbb;white-space:pre-wrap;line-height:1.7;max-height:160px;overflow-y:auto;">${result.cover_letter}</pre>
-          <button onclick="copyText(this, \`${result.cover_letter.replace(/`/g,'\\`')}\`)" style="margin-top:12px;padding:8px 20px;background:none;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-family:'Syne Mono',monospace;font-size:10px;letter-spacing:0.1em;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--fire2)';this.style.color='var(--fire2)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">COPY LETTER</button>
+          <pre style="font-family:'Syne Mono',monospace;font-size:11px;color:#bbb;white-space:pre-wrap;line-height:1.7;max-height:180px;overflow-y:auto;">${escapeHtml(result.cover_letter)}</pre>
+          <button onclick="copyText(this, ${JSON.stringify(result.cover_letter)})" style="margin-top:12px;padding:8px 20px;background:none;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-family:'Syne Mono',monospace;font-size:10px;letter-spacing:0.1em;cursor:pointer;">COPY LETTER</button>
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
           <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:16px;">
             <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">💼 LinkedIn Headline</div>
-            <p style="font-size:13px;color:#ccc;line-height:1.5;">${result.linkedin_headline}</p>
+            <p style="font-size:13px;color:#ccc;line-height:1.5;">${escapeHtml(result.linkedin_headline)}</p>
+            <button onclick="copyText(this, ${JSON.stringify(result.linkedin_headline)})" style="margin-top:10px;padding:6px 16px;background:none;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-family:'Syne Mono',monospace;font-size:10px;cursor:pointer;">COPY</button>
           </div>
           <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:16px;">
             <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--fire);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">🎯 ATS Keywords</div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;">${(result.ats_keywords || []).map(k => `<span style="background:rgba(255,77,0,0.1);border:1px solid rgba(255,77,0,0.2);border-radius:4px;padding:3px 8px;font-size:11px;color:var(--fire2);font-family:'Syne Mono',monospace;">${k}</span>`).join('')}</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">${(result.ats_keywords||[]).map(k=>`<span style="background:rgba(255,77,0,0.1);border:1px solid rgba(255,77,0,0.2);border-radius:4px;padding:3px 8px;font-size:11px;color:var(--fire2);font-family:'Syne Mono',monospace;">${escapeHtml(k)}</span>`).join('')}</div>
           </div>
         </div>
       </div>`;
 
   } catch {
-    document.getElementById('paywallSection').innerHTML = `<div style="text-align:center;padding:24px;color:var(--fire);font-family:'Syne Mono',monospace;font-size:13px;">→ Something went wrong generating your rewrite. Please try again.</div>`;
+    document.getElementById('paywallSection').innerHTML = `
+      <div style="text-align:center;padding:24px;color:var(--fire);font-family:'Syne Mono',monospace;font-size:13px;">
+        → Something went wrong. Please <a href="mailto:support@cvroasted.co.za" style="color:var(--fire2);">contact support</a> with your order confirmation.
+      </div>`;
   }
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
 }
 
 function copyText(btn, text) {
@@ -1219,6 +1167,13 @@ function copyText(btn, text) {
   });
 }
 
+function showErr(msg) {
+  const el = document.getElementById('errBox');
+  el.textContent = '→ ' + msg;
+  el.classList.add('visible');
+  document.getElementById('roastBtn').disabled = false;
+}
+
 function resetApp() {
   document.getElementById('uploadSection').style.display = 'block';
   document.getElementById('resultsSection').classList.remove('visible');
@@ -1227,8 +1182,8 @@ function resetApp() {
   document.getElementById('cvText').value = '';
   document.getElementById('jobTarget').value = '';
   document.getElementById('fileSelectedMsg').style.display = 'none';
-  pdfText = '';
   currentCVText = '';
+  sessionStorage.clear();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
